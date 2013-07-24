@@ -1,4 +1,4 @@
-spring-data-jpa-mvc
+Spring Data Mvc Project Start Up
 ===================
 
-Spring Data Jpa MVC Example
+This project is a startup using spring stack.
