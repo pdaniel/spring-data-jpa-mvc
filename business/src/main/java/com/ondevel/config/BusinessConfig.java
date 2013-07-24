@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -24,6 +25,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan(basePackages = "com.ondevel.service")
+@Import(value = BackendConfig.class)
 public class BusinessConfig {
 
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
@@ -38,9 +40,9 @@ public class BusinessConfig {
         BoneCPDataSource dataSource = new BoneCPDataSource();
 
         dataSource.setDriverClass("oracle.jdbc.OracleDriver");
-        dataSource.setJdbcUrl("<change>");
-        dataSource.setUsername("<change>");
-        dataSource.setPassword("<change>");
+        dataSource.setJdbcUrl("---");
+        dataSource.setUsername("-");
+        dataSource.setPassword("-");
 
         return dataSource;
     }
@@ -63,11 +65,11 @@ public class BusinessConfig {
         entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistence.class);
 
         Properties jpaProterties = new Properties();
-        jpaProterties.put(PROPERTY_NAME_HIBERNATE_DIALECT, "org.hibernate.dialect.OracleDialect");
+        jpaProterties.put(PROPERTY_NAME_HIBERNATE_DIALECT, "org.hibernate.dialect.Oracle10gDialect");
         jpaProterties.put(PROPERTY_NAME_HIBERNATE_FORMAT_SQL, true);
         jpaProterties.put(PROPERTY_NAME_HIBERNATE_NAMING_STRATEGY, "org.hibernate.cfg.ImprovedNamingStrategy");
         jpaProterties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, true);
-        jpaProterties.put("hibernate.hbm2ddl.auto", "create");
+        jpaProterties.put("hibernate.hbm2ddl.auto", "update");
 
         entityManagerFactoryBean.setJpaProperties(jpaProterties);
 

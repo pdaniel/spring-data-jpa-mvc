@@ -1,15 +1,17 @@
-package com.ondevele.integration;
+package com.ondevel.integration;
 
-import com.ondevel.config.BusinessConfig;
-import com.ondevel.context.ApplicationContext;
+
+import com.ondevel.config.WebConfig;
 import com.ondevel.dto.PersonDTO;
 import com.ondevel.model.Person;
 import com.ondevel.service.PersonService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
  * @author: danielpo
@@ -17,7 +19,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Time: 5:57 PM
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ApplicationContext.class)
+@ContextConfiguration(classes = WebConfig.class)
+@WebAppConfiguration
 public class PersonIntegrationTest {
 
     @Autowired
