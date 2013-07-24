@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author: danielpo
+ * @author danielpo
  * Date: 7/24/13
  * Time: 10:40 AM
  */
@@ -28,20 +28,34 @@ import java.util.List;
 @EnableWebMvc
 @ComponentScan("com.ondevel.web.controller")
 @Import(value = BusinessConfig.class)
-public class WebConfig extends WebMvcConfigurerAdapter {
+public final class WebConfig extends WebMvcConfigurerAdapter {
 
+    /**
+     * Default servlet handle.
+     * @param configurer - DefaultServletHandlerConfigurer
+     */
     @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+    public void configureDefaultServletHandling(final DefaultServletHandlerConfigurer configurer) {
         super.configureDefaultServletHandling(configurer);
         configurer.enable();
     }
 
+
+
+    /**
+     * view controllers.
+     * @param registry - view controllers registry
+     */
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
+    public void addViewControllers(final ViewControllerRegistry registry) {
         super.addViewControllers(registry);
         registry.addViewController("/").setViewName("index");
     }
 
+    /**
+     * Template resolver.
+     * @return - a resolver.
+     */
     @Bean
     public ServletContextTemplateResolver templateResolver() {
         ServletContextTemplateResolver resolver = new ServletContextTemplateResolver();
@@ -52,6 +66,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
+    /**
+     * Template engine.
+     * @return - a new template engine
+     */
     @Bean
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
@@ -59,13 +77,21 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return templateEngine;
     }
 
-    @Bean
+    /**
+     * thymeleaf view resolver.
+     * @return - the view resolver
+     */
+     @Bean
     public ThymeleafViewResolver thymeleafViewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
         return resolver;
     }
 
+    /**
+     * Message source.
+     * @return - new message source
+     */
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -75,7 +101,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureMessageConverters(
-            List<HttpMessageConverter<?>> converters) {
+           final List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         List<MediaType> mediaTypes = new ArrayList<MediaType>();
         mediaTypes.add(MediaType.APPLICATION_JSON);
