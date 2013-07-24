@@ -1,7 +1,9 @@
 package com.ondevel.api.controller;
 
 /**
- * Created by daniel on 7/25/13.
+ * @author Daniel P.
+ * @version 1.0
+ * 7/25/13
  */
 public class AbstractController {
 }
