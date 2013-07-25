@@ -12,27 +12,37 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
 /**
- * @author: danielpo
+ * @author danielpo
  * Date: 7/23/13
  * Time: 4:13 PM
  */
 @Service
 @Transactional
-public class PersonServiceImpl implements PersonService {
+class PersonServiceImpl implements PersonService {
+    /**
+     * Logger constant.
+     */
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonServiceImpl.class);
 
+    /**
+     * Person repository.
+     */
     @Resource
     private PersonRepository personRepository;
 
     @Override
-    public Person create(PersonDTO personDTO) {
+    public Person create(final PersonDTO personDTO) {
         Person person = new Person();
         person.setFirstName(personDTO.getFirstName());
         person.setLastName(personDTO.getLastName());
         return personRepository.save(person);
     }
 
-    public void setPersonRepository(PersonRepository personRepository) {
-        this.personRepository = personRepository;
+    /**
+     * Setter for person repository to be used only from tests.
+     * @param personRepo - a new person repository
+     */
+    public void setPersonRepository(final PersonRepository personRepo) {
+        this.personRepository = personRepo;
     }
 }

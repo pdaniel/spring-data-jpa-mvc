@@ -28,7 +28,7 @@ import java.util.List;
 @EnableWebMvc
 @ComponentScan("com.ondevel.web.controller")
 @Import(value = BusinessConfig.class)
-public final class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig extends WebMvcConfigurerAdapter {
 
     /**
      * Default servlet handle.
@@ -40,9 +40,7 @@ public final class WebConfig extends WebMvcConfigurerAdapter {
         configurer.enable();
     }
 
-
-
-    /**
+     /**
      * view controllers.
      * @param registry - view controllers registry
      */

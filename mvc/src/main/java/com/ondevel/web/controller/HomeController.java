@@ -14,7 +14,7 @@ import java.util.List;
  *         Time: 11:28 AM
  */
 @Controller
-class HomeController {
+public final class HomeController {
     /**
      * Home controller.
      *
